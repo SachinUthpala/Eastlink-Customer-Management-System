@@ -14,6 +14,9 @@ if(isset($_POST['submit'])){
     $mainGroup = $_POST['Group'];
     $subGroup = $_POST['subGroup'];
 
+    $extSql = "SELECT * FROM `customers` WHERE company = :company || contactp = :contactp ";
+    //need to develop a tomorrow
+
     $addCustomerSql = "INSERT INTO `customers`( `company`, `contactp`, `email`, `phone`, `mainGroup`, `subGroup`) VALUES (
     :company , :contactp , :email , :phone , :mainGroup , :subGroup)";
     $addCustomer = $conn->prepare($addCustomerSql);
