@@ -9,7 +9,7 @@
     <title>Estlink Engineering- CM</title>
 </head>
 
-<body class="dark">
+<body>
 
     <!-- Sidebar -->
     <div class="sidebar">
@@ -18,8 +18,8 @@
             <div class="logo-name" style="color: red;"><span >East - </span>Link</div>
         </a>
         <ul class="side-menu">
-            <li class="active"><a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
-            <li><a href="#"><i class='bx bx-store-alt'></i>Shop</a></li>
+            <li class="active" onclick="shoDash()"><a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
+            <li><a href="#" onclick="shoAddCus()"><i class='bx bx-store-alt'></i>Add Custome</a></li>
             <li ><a href="#"><i class='bx bx-analyse'></i>Analytics</a></li>
             <li><a href="#"><i class='bx bx-message-square-dots'></i>Tickets</a></li>
             <li><a href="#"><i class='bx bx-group'></i>Users</a></li>
@@ -47,15 +47,14 @@
                     <button class="search-btn" type="submit"><i class='bx bx-search'></i></button>
                 </div>
             </form>
-            <h2 style="color: #D32F2F;"><i class='bx bx-sun'></i></h2>
-            <input type="checkbox" id="theme-toggle" hidden>
-            <label for="theme-toggle" class="theme-toggle"></label>
+           
+     
             
         </nav>
 
         <!-- End of Navbar -->
 
-        <main>
+        <main id="Dashboard">
             <div class="header">
                 <div class="left">
                     <h1>Dashboard</h1>
@@ -64,7 +63,7 @@
                                 Analytics
                             </a></li>
                         /
-                        <li><a href="#" class="active">Shop</a></li>
+                        <li><a href="#" class="active">Dashbord</a></li>
                     </ul>
                 </div>
                 
@@ -159,7 +158,89 @@
 
         </main>
 
+        <main id="AddCustomer">
+            
+            <section class="container">
+                <header>Registration Form</header>
+                <form action="#" class="form">
+                  <div class="input-box">
+                    <label>Full Name</label>
+                    <input type="text" placeholder="Enter full name" required />
+                  </div>
+          
+                  <div class="input-box">
+                    <label>Email Address</label>
+                    <input type="text" placeholder="Enter email address" required />
+                  </div>
+          
+                  <div class="column">
+                    <div class="input-box">
+                      <label>Phone Number</label>
+                      <input type="number" placeholder="Enter phone number" required />
+                    </div>
+                    <div class="input-box">
+                      <label>Birth Date</label>
+                      <input type="date" placeholder="Enter birth date" required />
+                    </div>
+                  </div>
+                  <div class="gender-box">
+                    <h3>Gender</h3>
+                    <div class="gender-option">
+                      <div class="gender">
+                        <input type="radio" id="check-male" name="gender" checked />
+                        <label for="check-male">male</label>
+                      </div>
+                      <div class="gender">
+                        <input type="radio" id="check-female" name="gender" />
+                        <label for="check-female">Female</label>
+                      </div>
+                      <div class="gender">
+                        <input type="radio" id="check-other" name="gender" />
+                        <label for="check-other">prefer not to say</label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="input-box address">
+                    <label>Address</label>
+                    <input type="text" placeholder="Enter street address" required />
+                    <input type="text" placeholder="Enter street address line 2" required />
+                    <div class="column">
+                      <div class="select-box">
+                        <select>
+                          <option hidden>Country</option>
+                          <option>America</option>
+                          <option>Japan</option>
+                          <option>India</option>
+                          <option>Nepal</option>
+                        </select>
+                      </div>
+                      <input type="text" placeholder="Enter your city" required />
+                    </div>
+                    <div class="column">
+                      <input type="text" placeholder="Enter your region" required />
+                      <input type="number" placeholder="Enter postal code" required />
+                    </div>
+                  </div>
+                  <button>Submit</button>
+                </form>
+              </section>
+
+        </main>
+
     </div>
+
+    <script>
+
+        const shoDash = () => {
+            document.getElementById("Dashboard").style.display = "block";
+            document.getElementById("AddCustomer").style.display = "none";
+        }
+
+        const shoAddCus = () => {
+            document.getElementById("Dashboard").style.display = "none";
+            document.getElementById("AddCustomer").style.display = "block";
+        }
+    </script>
 
     <script src="../Asserts/Scripts/Script.js"></script>
 </body>
