@@ -161,11 +161,16 @@
         <main id="AddCustomer">
             
             <section class="container">
-                <header>Registration Form</header>
+                <header>Add Customer</header>
                 <form action="#" class="form">
                   <div class="input-box">
-                    <label>Full Name</label>
-                    <input type="text" placeholder="Enter full name" required />
+                    <label>Company Name</label>
+                    <input type="text" placeholder="Enter Company Name" required />
+                  </div>
+
+                  <div class="input-box">
+                    <label>Contact Person</label>
+                    <input type="text" placeholder="Enter Contact Person name" required />
                   </div>
           
                   <div class="input-box">
@@ -178,53 +183,103 @@
                       <label>Phone Number</label>
                       <input type="number" placeholder="Enter phone number" required />
                     </div>
-                    <div class="input-box">
-                      <label>Birth Date</label>
-                      <input type="date" placeholder="Enter birth date" required />
-                    </div>
+                    
                   </div>
                   <div class="gender-box">
-                    <h3>Gender</h3>
+                    <h3>Group</h3>
                     <div class="gender-option">
-                      <div class="gender">
-                        <input type="radio" id="check-male" name="gender" checked />
-                        <label for="check-male">male</label>
+                      <div class="gender" onclick="showsub01()">
+                        <input type="radio" id="check-male" name="Group" checked />
+                        <label for="check-male">Group 1</label>
                       </div>
-                      <div class="gender">
-                        <input type="radio" id="check-female" name="gender" />
-                        <label for="check-female">Female</label>
+                      <div class="gender" onclick="showsub02()">
+                        <input type="radio" id="check-female" name="Group" />
+                        <label for="check-female">Group 2-1</label>
                       </div>
-                      <div class="gender">
-                        <input type="radio" id="check-other" name="gender" />
-                        <label for="check-other">prefer not to say</label>
+                      <div class="gender" onclick="showsub03()">
+                        <input type="radio" id="check-other" name="Group" />
+                        <label for="check-other">Group 2-2</label>
+                      </div>
+                      <div class="gender" onclick="showsub04()">
+                        <input type="radio" id="check-other2" name="Group" />
+                        <label for="check-other2">Group 2-3</label>
+                      </div>
+                      <div class="gender" onclick="showsub05()">
+                        <input type="radio" id="check-other3" name="Group" />
+                        <label for="check-other3">MIS</label>
                       </div>
                     </div>
                   </div>
+
+
                   <div class="input-box address">
-                    <label>Address</label>
-                    <input type="text" placeholder="Enter street address" required />
-                    <input type="text" placeholder="Enter street address line 2" required />
+                    <label>Sub Group</label>
                     <div class="column">
-                      <div class="select-box">
-                        <select>
-                          <option hidden>Country</option>
-                          <option>America</option>
-                          <option>Japan</option>
-                          <option>India</option>
-                          <option>Nepal</option>
+                      <div class="select-box" id="sub01">
+                        <select name="subgroup">
+                          <option hidden>Computers & Networks , Solar </option>
+                          <option value="Computers & Networks">Computers & Networks</option>
+                          <option value="Solar">Solar</option>
                         </select>
                       </div>
-                      <input type="text" placeholder="Enter your city" required />
-                    </div>
-                    <div class="column">
-                      <input type="text" placeholder="Enter your region" required />
-                      <input type="number" placeholder="Enter postal code" required />
+
+                      <div class="select-box" id="sub02">
+                        <select name="subgroup">
+                          <option hidden>Telecommunication , ISPs ,  Computer Software Companies , Universities & Institutes</option>
+                          <option value="Telecommunication">Telecommunication</option>
+                          <option value="ISPs">ISPs</option>
+                          <option value="Computer Software Companies">Computer Software Companies</option>
+                          <option value="Universities & Institutes">Universities & Institutes</option>
+                        </select>
+                      </div>
+
+
+                      <div class="select-box" id="sub03">
+                        <select name="subgroup">
+                          <option hidden>Banks , Hotels , Hospitals , Factories-Garments , Factories-Others , Airlines </option>
+                          <option value="Banks">Banks</option>
+                          <option value="Hotels">Hotels</option>
+                          <option value="Hospitals">Hospitals</option>
+                          <option value="Factories-Garments">Factories-Garments</option>
+                          <option value="Factories-Others">Factories-Others</option>
+                          <option value="Airlines">Airlines</option>
+                        </select>
+                      </div>
+
+
+                      <div class="select-box" id="sub04">
+                        <select name="subgroup">
+                          <option hidden>Electrical , Electrical - AC , Civil , Interior Decors , Government & NGO , Offices & Companies , Shpping , TV & radio</option>
+                          <option value="Electrical">Electrical</option>
+                          <option value="Electrical - AC">Electrical - AC</option>
+                          <option value="Civil">Civil</option>
+                          <option value="Interior Decors">Interior Decors</option>
+                          <option value="Government & NGO">Government & NGO</option>
+                          <option value="Offices & Companies">Offices & Companies</option>
+                          <option value="Shpping">Shpping</option>
+                          <option value="TV & radio">TV & radio</option>
+                        </select>
+                      </div>
+
+
+                      <div class="select-box" id="sub05">
+                        <select name="subgroup">
+                          <option hidden>Competitors ,  Informed to remove , General , Individuals , Other </option>
+                          <option value="Competitors">Competitors</option>
+                          <option value="Informed to remove">Informed to remove</option>
+                          <option value="General">General</option>
+                          <option value="Individuals">Individuals</option>
+                          <option value="Other">Other</option>
+                        </select>
+                      </div>
+
+
                     </div>
                   </div>
-                  <button>Submit</button>
+                  <button type="submit">Submit</button>
                 </form>
               </section>
-
+              <br><br>
         </main>
 
     </div>
@@ -239,6 +294,49 @@
         const shoAddCus = () => {
             document.getElementById("Dashboard").style.display = "none";
             document.getElementById("AddCustomer").style.display = "block";
+        }
+
+
+
+        // for sub groups
+        const showsub01 = () => {
+            document.getElementById("sub01").style.display = "block";
+            document.getElementById("sub02").style.display = "none";
+            document.getElementById("sub03").style.display = "none";
+            document.getElementById("sub04").style.display = "none";
+            document.getElementById("sub05").style.display = "none";
+        }
+
+        const showsub02 = () => {
+            document.getElementById("sub01").style.display = "none";
+            document.getElementById("sub02").style.display = "block";
+            document.getElementById("sub03").style.display = "none";
+            document.getElementById("sub04").style.display = "none";
+            document.getElementById("sub05").style.display = "none";
+        }
+
+        const showsub03 = () => {
+            document.getElementById("sub01").style.display = "none";
+            document.getElementById("sub02").style.display = "none";
+            document.getElementById("sub03").style.display = "block";
+            document.getElementById("sub04").style.display = "none";
+            document.getElementById("sub05").style.display = "none";
+        }
+
+        const showsub04 = () => {
+            document.getElementById("sub01").style.display = "none";
+            document.getElementById("sub02").style.display = "none";
+            document.getElementById("sub04").style.display = "block";
+            document.getElementById("sub03").style.display = "none";
+            document.getElementById("sub05").style.display = "none";
+        }
+
+        const showsub05 = () => {
+            document.getElementById("sub01").style.display = "none";
+            document.getElementById("sub02").style.display = "none";
+            document.getElementById("sub05").style.display = "block";
+            document.getElementById("sub04").style.display = "none";
+            document.getElementById("sub03").style.display = "none";
         }
     </script>
 

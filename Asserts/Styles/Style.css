@@ -690,7 +690,7 @@ body{
     column-gap: 5px;
   }
   .gender input {
-    accent-color: rgb(130, 106, 251);
+    accent-color: rgb(255, 0, 0);
   }
   .form :where(.gender input, .gender label) {
     cursor: pointer;
@@ -719,10 +719,11 @@ body{
     border: none;
     cursor: pointer;
     transition: all 0.2s ease;
-    background: rgb(130, 106, 251);
+    background: rgb(255, 47, 47);
+    border-radius: 5px;
   }
   .form button:hover {
-    background: rgb(88, 56, 250);
+    background: rgb(255, 0, 0);
   }
   /*Responsive*/
   @media screen and (max-width: 500px) {
@@ -733,4 +734,21 @@ body{
       row-gap: 15px;
     }
   }
+
+
+  #sub02{
+    display: none;
+  }
   
+
+  #sub03{
+    display: none;
+  }
+
+  #sub04{
+    display: none;
+  }
+
+  #sub05{
+    display: none;
+  }
