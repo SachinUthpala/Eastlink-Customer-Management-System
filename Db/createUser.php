@@ -2,6 +2,7 @@
 
 
 require_once './Db.Conn.php';
+session_start();
 
 
 
@@ -26,6 +27,7 @@ if(isset($_POST['submit'])){
     $addCustomer->execute();
 
     header("Location:../UserProfils/User.php");
+    $_SESSION['UserCreated'] = 1 ;
 
     exit;
 }

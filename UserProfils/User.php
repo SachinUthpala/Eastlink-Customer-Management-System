@@ -1,5 +1,6 @@
 <?php
- require_once '../Db/Db.Conn.php'
+ require_once '../Db/Db.Conn.php';
+ session_start();
 ?>
 
 <!DOCTYPE html>
@@ -11,6 +12,11 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="../Asserts/Styles/Style.css">
     <title>Estlink Engineering- CM</title>
+
+      <!--for sweet alert-->
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
 </head>
 
 <body>
@@ -58,7 +64,12 @@
 
         <!-- End of Navbar -->
 
-        <main id="Dashboard">
+        <main id="Dashboard" <?php
+            if($_SESSION['UserCreated'] == 1) {
+                echo "style= 'display: none'";
+            }
+        ?>
+        >
             <div class="header">
                 <div class="left">
                     <h1>Dashboard</h1>
@@ -162,7 +173,14 @@
 
         </main>
 
-        <main id="AddCustomer">
+        <main id="AddCustomer" 
+        <?php
+            if($_SESSION['UserCreated'] == 1) {
+                echo "style= 'display: block'";
+            }
+        ?>
+            
+            >
             
             <section class="container">
                 <header>Add Customer</header>
@@ -214,7 +232,7 @@
                             </div>
                         </div>
                         <br>
-                        <span id="contectssss" style="color: rgba(255, 0, 0, 0.534);">Select Main Group</span>
+                        <span id="contectssss" style="color: #388E3C">Select Main Group</span>
                     </div>
             
                     <div class="input-box address">
@@ -324,6 +342,35 @@
     showSubGroup('sub01');
         
     </script>
+
+
+
+
+
+
+
+
+
+<?php
+
+
+            if($_SESSION['UserCreated'] == 1 ){
+                echo '
+                <script>
+                Swal.fire({
+                    title: "Customer Added Sucessfull!",
+                    text: "You are sucessfully Customer Added In!",
+                    icon: "success"
+                  });
+                  </script>
+                '
+                ;
+                // Set the flag to true
+                $_SESSION['UserCreated'] = null; // Reset the session variable
+                
+            }
+
+?>
 
     <script src="../Asserts/Scripts/Script.js"></script>
 </body>
