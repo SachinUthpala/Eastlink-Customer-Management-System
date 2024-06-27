@@ -162,123 +162,105 @@
             
             <section class="container">
                 <header>Add Customer</header>
-                <form action="#" class="form">
-                  <div class="input-box">
-                    <label>Company Name</label>
-                    <input type="text" placeholder="Enter Company Name" required />
-                  </div>
-
-                  <div class="input-box">
-                    <label>Contact Person</label>
-                    <input type="text" placeholder="Enter Contact Person name" required />
-                  </div>
-          
-                  <div class="input-box">
-                    <label>Email Address</label>
-                    <input type="text" placeholder="Enter email address" required />
-                  </div>
-          
-                  <div class="column">
+                <form action="../Db/createUser.php" method="post" class="form">
                     <div class="input-box">
-                      <label>Phone Number</label>
-                      <input type="number" placeholder="Enter phone number" required />
+                        <label>Company Name</label>
+                        <input type="text" name="company" placeholder="Enter Company Name" required />
                     </div>
-                    
-                  </div>
-                  <div class="gender-box">
-                    <h3>Group</h3>
-                    <div class="gender-option">
-                      <div class="gender" onclick="showsub01()">
-                        <input type="radio" id="check-male" name="Group" checked />
-                        <label for="check-male">Group 1</label>
-                      </div>
-                      <div class="gender" onclick="showsub02()">
-                        <input type="radio" id="check-female" name="Group" />
-                        <label for="check-female">Group 2-1</label>
-                      </div>
-                      <div class="gender" onclick="showsub03()">
-                        <input type="radio" id="check-other" name="Group" />
-                        <label for="check-other">Group 2-2</label>
-                      </div>
-                      <div class="gender" onclick="showsub04()">
-                        <input type="radio" id="check-other2" name="Group" />
-                        <label for="check-other2">Group 2-3</label>
-                      </div>
-                      <div class="gender" onclick="showsub05()">
-                        <input type="radio" id="check-other3" name="Group" />
-                        <label for="check-other3">MIS</label>
-                      </div>
+            
+                    <div class="input-box">
+                        <label>Contact Person</label>
+                        <input type="text" name="contactperson" placeholder="Enter Contact Person name" required />
                     </div>
-                  </div>
-
-
-                  <div class="input-box address">
-                    <label>Sub Group</label>
+            
+                    <div class="input-box">
+                        <label>Email Address</label>
+                        <input type="text" name="email" placeholder="Enter email address" required />
+                    </div>
+            
                     <div class="column">
-                      <div class="select-box" id="sub01">
-                        <select name="subgroup">
-                          <option hidden>Computers & Networks , Solar </option>
-                          <option value="Computers & Networks">Computers & Networks</option>
-                          <option value="Solar">Solar</option>
-                        </select>
-                      </div>
-
-                      <div class="select-box" id="sub02">
-                        <select name="subgroup">
-                          <option hidden>Telecommunication , ISPs ,  Computer Software Companies , Universities & Institutes</option>
-                          <option value="Telecommunication">Telecommunication</option>
-                          <option value="ISPs">ISPs</option>
-                          <option value="Computer Software Companies">Computer Software Companies</option>
-                          <option value="Universities & Institutes">Universities & Institutes</option>
-                        </select>
-                      </div>
-
-
-                      <div class="select-box" id="sub03">
-                        <select name="subgroup">
-                          <option hidden>Banks , Hotels , Hospitals , Factories-Garments , Factories-Others , Airlines </option>
-                          <option value="Banks">Banks</option>
-                          <option value="Hotels">Hotels</option>
-                          <option value="Hospitals">Hospitals</option>
-                          <option value="Factories-Garments">Factories-Garments</option>
-                          <option value="Factories-Others">Factories-Others</option>
-                          <option value="Airlines">Airlines</option>
-                        </select>
-                      </div>
-
-
-                      <div class="select-box" id="sub04">
-                        <select name="subgroup">
-                          <option hidden>Electrical , Electrical - AC , Civil , Interior Decors , Government & NGO , Offices & Companies , Shpping , TV & radio</option>
-                          <option value="Electrical">Electrical</option>
-                          <option value="Electrical - AC">Electrical - AC</option>
-                          <option value="Civil">Civil</option>
-                          <option value="Interior Decors">Interior Decors</option>
-                          <option value="Government & NGO">Government & NGO</option>
-                          <option value="Offices & Companies">Offices & Companies</option>
-                          <option value="Shpping">Shpping</option>
-                          <option value="TV & radio">TV & radio</option>
-                        </select>
-                      </div>
-
-
-                      <div class="select-box" id="sub05">
-                        <select name="subgroup">
-                          <option hidden>Competitors ,  Informed to remove , General , Individuals , Other </option>
-                          <option value="Competitors">Competitors</option>
-                          <option value="Informed to remove">Informed to remove</option>
-                          <option value="General">General</option>
-                          <option value="Individuals">Individuals</option>
-                          <option value="Other">Other</option>
-                        </select>
-                      </div>
-
-
+                        <div class="input-box">
+                            <label>Phone Number</label>
+                            <input type="number" name="phone" placeholder="Enter phone number" required />
+                        </div>
                     </div>
-                  </div>
-                  <button type="submit">Submit</button>
+            
+                    <div class="gender-box">
+                        <h3>Group</h3>
+                        <div class="gender-option">
+                            <div class="gender" onclick="showsub01()">
+                                <input type="radio" id="check-male" name="Group" value="Group 1"  />
+                                <label for="check-male">Group 1</label>
+                            </div>
+                            <div class="gender" onclick="showsub02()">
+                                <input type="radio" id="check-female" name="Group" value="Group 2-1" />
+                                <label for="check-female">Group 2-1</label>
+                            </div>
+                            <div class="gender" onclick="showsub03()">
+                                <input type="radio" id="check-other" name="Group" value="Group 2-2" />
+                                <label for="check-other">Group 2-2</label>
+                            </div>
+                            <div class="gender" onclick="showsub04()">
+                                <input type="radio" id="check-other2" name="Group" value="Group 2-3" />
+                                <label for="check-other2">Group 2-3</label>
+                            </div>
+                            <div class="gender" onclick="showsub05()">
+                                <input type="radio" id="check-other3" name="Group" value="MIS" />
+                                <label for="check-other3">MIS</label>
+                            </div>
+                        </div>
+                        <br>
+                        <span id="contectssss" style="color: rgba(255, 0, 0, 0.534);">Select Main Group</span>
+                    </div>
+            
+                    <div class="input-box address">
+                        <label>Sub Group</label>
+                        <div class="column">
+                            <div class="select-box">
+                                <select name="subGroup" id="subGroupSelect">
+                                    <option value="" hidden></option>
+                                    <optgroup id="sub01" label="Computers & Networks , Solar">
+                                        <option value="Computers & Networks">Computers & Networks</option>
+                                        <option value="Solar">Solar</option>
+                                    </optgroup>
+                                    <optgroup id="sub02" label="Telecommunication , ISPs , Computer Software Companies , Universities & Institutes" style="display:none;">
+                                        <option value="Telecommunication">Telecommunication</option>
+                                        <option value="ISPs">ISPs</option>
+                                        <option value="Computer Software Companies">Computer Software Companies</option>
+                                        <option value="Universities & Institutes">Universities & Institutes</option>
+                                    </optgroup>
+                                    <optgroup id="sub03" label="Banks , Hotels , Hospitals , Factories-Garments , Factories-Others , Airlines" style="display:none;">
+                                        <option value="Banks">Banks</option>
+                                        <option value="Hotels">Hotels</option>
+                                        <option value="Hospitals">Hospitals</option>
+                                        <option value="Factories-Garments">Factories-Garments</option>
+                                        <option value="Factories-Others">Factories-Others</option>
+                                        <option value="Airlines">Airlines</option>
+                                    </optgroup>
+                                    <optgroup id="sub04" label="Electrical , Electrical - AC , Civil , Interior Decors , Government & NGO , Offices & Companies , Shpping , TV & radio" style="display:none;">
+                                        <option value="Electrical">Electrical</option>
+                                        <option value="Electrical - AC">Electrical - AC</option>
+                                        <option value="Civil">Civil</option>
+                                        <option value="Interior Decors">Interior Decors</option>
+                                        <option value="Government & NGO">Government & NGO</option>
+                                        <option value="Offices & Companies">Offices & Companies</option>
+                                        <option value="Shpping">Shpping</option>
+                                        <option value="TV & radio">TV & radio</option>
+                                    </optgroup>
+                                    <optgroup id="sub05" label="Competitors , Informed to remove , General , Individuals , Other" style="display:none;">
+                                        <option value="Competitors">Competitors</option>
+                                        <option value="Informed to remove">Informed to remove</option>
+                                        <option value="General">General</option>
+                                        <option value="Individuals">Individuals</option>
+                                        <option value="Other">Other</option>
+                                    </optgroup>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <button type="submit" name="submit">Submit</button>
                 </form>
-              </section>
+            </section>
               <br><br>
         </main>
 
@@ -298,46 +280,45 @@
 
 
 
-        // for sub groups
         const showsub01 = () => {
-            document.getElementById("sub01").style.display = "block";
-            document.getElementById("sub02").style.display = "none";
-            document.getElementById("sub03").style.display = "none";
-            document.getElementById("sub04").style.display = "none";
-            document.getElementById("sub05").style.display = "none";
-        }
+        showSubGroup('sub01');
+        document.getElementById("contectssss").innerHTML  = "Includes : Computers & Networks , Solar";
+    }
 
-        const showsub02 = () => {
-            document.getElementById("sub01").style.display = "none";
-            document.getElementById("sub02").style.display = "block";
-            document.getElementById("sub03").style.display = "none";
-            document.getElementById("sub04").style.display = "none";
-            document.getElementById("sub05").style.display = "none";
-        }
+    const showsub02 = () => {
+        showSubGroup('sub02');
+        document.getElementById("contectssss").innerHTML  = "Includes : Telecommunication , ISPs , Computer Software Companies , Universities & Institutes";
+    }
 
-        const showsub03 = () => {
-            document.getElementById("sub01").style.display = "none";
-            document.getElementById("sub02").style.display = "none";
-            document.getElementById("sub03").style.display = "block";
-            document.getElementById("sub04").style.display = "none";
-            document.getElementById("sub05").style.display = "none";
-        }
+    const showsub03 = () => {
+        showSubGroup('sub03');
+        document.getElementById("contectssss").innerHTML  = "Includes : Banks , Hotels , Hospitals , Factories-Garments , Factories-Others , Airlines";
+    }
 
-        const showsub04 = () => {
-            document.getElementById("sub01").style.display = "none";
-            document.getElementById("sub02").style.display = "none";
-            document.getElementById("sub04").style.display = "block";
-            document.getElementById("sub03").style.display = "none";
-            document.getElementById("sub05").style.display = "none";
-        }
+    const showsub04 = () => {
+        showSubGroup('sub04');
+        document.getElementById("contectssss").innerHTML  = "Includes : Electrical , Electrical - AC , Civil , Interior Decors , Government & NGO , Offices & Companies , Shpping , TV & radio";
+    }
 
-        const showsub05 = () => {
-            document.getElementById("sub01").style.display = "none";
-            document.getElementById("sub02").style.display = "none";
-            document.getElementById("sub05").style.display = "block";
-            document.getElementById("sub04").style.display = "none";
-            document.getElementById("sub03").style.display = "none";
-        }
+    const showsub05 = () => {
+        showSubGroup('sub05');
+        document.getElementById("contectssss").innerHTML  = "Includes : Competitors , Informed to remove , General , Individuals , Othe";
+    }
+
+    const showSubGroup = (id) => {
+        const subGroups = ['sub01', 'sub02', 'sub03', 'sub04', 'sub05'];
+        subGroups.forEach(sub => {
+            if (sub === id) {
+                document.getElementById(sub).style.display = 'block';
+            } else {
+                document.getElementById(sub).style.display = 'none';
+            }
+        });
+    }
+
+    // Initially show the first sub-group
+    showSubGroup('sub01');
+        
     </script>
 
     <script src="../Asserts/Scripts/Script.js"></script>
