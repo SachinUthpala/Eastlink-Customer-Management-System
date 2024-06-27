@@ -1,3 +1,7 @@
+<?php
+ require_once '../Db/Db.Conn.php'
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
