@@ -10,7 +10,7 @@ if(isset($_POST['submitUser'])){
 
     if(!$email || !$password){
         $_SESSION['credition_null'] = 1;
-        header("Location: ../index.html");
+        header("Location: ../index.php");
     }
 
 
@@ -29,14 +29,14 @@ if(isset($_POST['submitUser'])){
 
             if($password == $userPass){
                 $_SESSION['login sucessfull'] = 1;
-                header("Location: ../UserProfils/User.html");
+                header("Location: ../UserProfils/User.php");
             }else{
                 $_SESSION['wrong_pass'] = 1;
-                header("Location: ../index.html");
+                header("Location: ../index.php");
             }
         }else{
             $_SESSION['wrong_email'] = 1;
-            header("Location: ../index.html");
+            header("Location: ../index.php");
         }
     } catch (PDOException $e) {
         echo "Error: " . $e->getMessage();
