@@ -299,7 +299,7 @@ body{
     left: 2px;
     bottom: 2px;
     width: calc(25px - 4px);
-    background: var(--primary);
+    background: #D32F2F;
     border-radius: 50%;
     transition: all 0.3s ease;
 }
