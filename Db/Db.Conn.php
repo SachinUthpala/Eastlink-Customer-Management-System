@@ -5,7 +5,7 @@
 $serverName = "localhost"; // Remove 'https://' and any protocol prefixes
 $userName = "demo";
 $password = "iRoDUi8QoZgQIYs";
-$dbName = "demo";
+$dbName = "wa_crm";
 
 try {
     $conn = new PDO("mysql:host=$serverName;dbname=$dbName", $userName, $password);
