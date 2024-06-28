@@ -427,7 +427,6 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Whatsapp</th>
-                    <th>By</th>
                 </tr>
             </thead>
             <tbody>
@@ -441,7 +440,6 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                     <td><?php echo $myCusRow['email'];?></td>
                     <td><?php echo $myCusRow['phone'];?></td>
                     <td><?php echo $myCusRow['whatsapp'];?></td>
-                    <td><?php echo $myCusRow['createdBy'];?></td>
                 </tr>
                <?php } ?>
                 <!-- Add more rows as needed -->
