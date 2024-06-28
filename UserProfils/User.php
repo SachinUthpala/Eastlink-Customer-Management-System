@@ -737,6 +737,34 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                 ';
 
                 $_SESSION['UserNotCreated'] = null;
+            }else if($_SESSION['usernotadded'] == 1) {
+                echo '
+                
+                <script>
+                
+                    Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "User Not Added ! Try again",
+                    });
+                </script>
+                ';
+
+                $_SESSION['usernotadded'] = null;
+            }else if($_SESSION['useraadded'] == 1 ){
+                echo '
+                <script>
+                Swal.fire({
+                    title: "User Added Sucessfull!",
+                    text: "You are sucessfully User Added In!",
+                    icon: "success"
+                  });
+                  </script>
+                '
+                ;
+                // Set the flag to true
+                $_SESSION['useraadded'] = null; // Reset the session variable
+                
             }
 
 ?>
