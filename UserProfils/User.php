@@ -65,7 +65,7 @@
         <!-- End of Navbar -->
 
         <main id="Dashboard" <?php
-            if($_SESSION['UserCreated'] == 1) {
+            if($_SESSION['UserCreated'] == 1 || $_SESSION['UserNotCreated'] == 1) {
                 echo "style= 'display: none'";
             }
         ?>
@@ -175,7 +175,7 @@
 
         <main id="AddCustomer" 
         <?php
-            if($_SESSION['UserCreated'] == 1) {
+            if($_SESSION['UserCreated'] == 1 || $_SESSION['UserNotCreated'] == 1) {
                 echo "style= 'display: block'";
             }
         ?>
@@ -368,6 +368,20 @@
                 // Set the flag to true
                 $_SESSION['UserCreated'] = null; // Reset the session variable
                 
+            }else if($_SESSION['UserNotCreated'] == 1) {
+                echo '
+                
+                <script>
+                
+                    Swal.fire({
+                    icon: "error",
+                    title: "Oops...",
+                    text: "User Alerady Exsist!",
+                    });
+                </script>
+                ';
+
+                $_SESSION['UserNotCreated'] = null;
             }
 
 ?>

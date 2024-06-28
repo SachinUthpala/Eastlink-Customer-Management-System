@@ -1,6 +1,7 @@
 <?php
 
 require_once './Db.Conn.php';
+session_start();
 
 if(isset($_POST['submitUser'])){
     echo "submit";
@@ -29,6 +30,7 @@ if(isset($_POST['submitUser'])){
 
             if($password == $userPass){
                 $_SESSION['login sucessfull'] = 1;
+                $_SESSION['userName'] = $row['username'];
                 header("Location: ../UserProfils/User.php");
             }else{
                 $_SESSION['wrong_pass'] = 1;
