@@ -103,6 +103,8 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                         echo "style = 'display: none;'";
                     }
                 ?>
+
+                onclick="showAllUsers()"
                 
             ><a href="#" ><i class='bx bx-table'></i>All Users</a></li>
             
@@ -599,7 +601,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
 
          <?php
 
-            $userSql = "SELECT * FROM `customers`";
+            $userSql = "SELECT * FROM `user`";
             $userSmtp = $conn->prepare($userSql);
             $userSmtp->execute();
 
