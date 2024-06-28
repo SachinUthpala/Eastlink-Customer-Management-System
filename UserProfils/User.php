@@ -594,6 +594,81 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                 </form>
             </section>
          </main>
+
+
+
+         <?php
+
+            $userSql = "SELECT * FROM `customers`";
+            $userSmtp = $conn->prepare($userSql);
+            $userSmtp->execute();
+
+        ?>
+
+        <!-- all users -->
+
+        <main id="allUsers" >
+        
+        <div class="container">
+        <input type="text" id="searchInput4" onkeyup="searchTable4()" placeholder="Search by name..." class="search-box">
+        <button id="downloadExcel4">Download Excel</button>
+        <!-- `username`, `usermail`, `userpassword`, `adminAccess` -->
+        <table id="dataTable4">
+            <thead>
+                <tr>
+                    <th>User Name</th>
+                    <th>User Mail</th>
+                    <th>Password</th>
+                    <th>Admin Access</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example table data -->
+                 <?php while($userSmtpRow = $userSmtp->fetch(PDO::FETCH_ASSOC)){ ?>
+                <tr>
+                    <td><?php echo $userSmtpRow['username'];?></td>
+                    <td><?php echo $userSmtpRow['usermail'];?></td>
+                    <td><?php echo $userSmtpRow['userpassword'];?></td>
+                    <td><?php echo $userSmtpRow['adminAccess'];?></td>
+                </tr>
+               <?php } ?>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+    <script src="./table2excel.js"></script>
+<script>
+    function searchTable4() {
+        let input = document.getElementById("searchInput4");
+        let filter = input.value.toLowerCase();
+        let table = document.getElementById("dataTable4");
+        let tr = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < tr.length; i++) {
+            let tds = tr[i].getElementsByTagName("td");
+            let match = false;
+            for (let j = 0; j < tds.length; j++) {
+                if (tds[j]) {
+                    let txtValue = tds[j].textContent || tds[j].innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        match = true;
+                        break;
+                    }
+                }
+            }
+            tr[i].style.display = match ? "" : "none";
+        }
+    }
+
+    document.getElementById("downloadExcel4").addEventListener("click", function() {
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("#dataTable4"));
+    } )
+
+
+</script>
+
+        </main>
         
       
 
@@ -619,6 +694,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             document.getElementById("myCustomers").style.display = "none";
             document.getElementById("AllCustomers").style.display = "none";
             document.getElementById("addUser").style.display = "none";
+            document.getElementById("allUsers").style.display = "none";
         }
 
         const shoAddCus = () => {
@@ -627,6 +703,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             document.getElementById("myCustomers").style.display = "none";
             document.getElementById("AllCustomers").style.display = "none";
             document.getElementById("addUser").style.display = "none";
+            document.getElementById("allUsers").style.display = "none";
         }
 
         const showMyCustomers = () => {
@@ -635,6 +712,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             document.getElementById("myCustomers").style.display = "block";
             document.getElementById("AllCustomers").style.display = "none";
             document.getElementById("addUser").style.display = "none";
+            document.getElementById("allUsers").style.display = "none";
         }
 
         const showAllCustomers = () => {
@@ -643,6 +721,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             document.getElementById("myCustomers").style.display = "none";
             document.getElementById("AllCustomers").style.display = "block";
             document.getElementById("addUser").style.display = "none";
+            document.getElementById("allUsers").style.display = "none";
         }
 
         const shoAdduser = () => {
@@ -650,6 +729,16 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             document.getElementById("Dashboard").style.display = "none";
             document.getElementById("AddCustomer").style.display = "none";
             document.getElementById("myCustomers").style.display = "none";
+            document.getElementById("AllCustomers").style.display = "none";
+            document.getElementById("allUsers").style.display = "none";
+        }
+
+        const showAllUsers = () => {
+            document.getElementById("addUser").style.display = "none";
+            document.getElementById("Dashboard").style.display = "none";
+            document.getElementById("AddCustomer").style.display = "none";
+            document.getElementById("myCustomers").style.display = "none";
+            document.getElementById("allUsers").style.display = "block";
             document.getElementById("AllCustomers").style.display = "none";
         }
 
