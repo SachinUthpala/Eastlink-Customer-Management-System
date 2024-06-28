@@ -7,7 +7,51 @@
     exit;
  }
 
+
+ $date = date("Y/m/d");
 ?>
+
+
+<!-- 
+
+php codses for the dashbord
+
+$
+
+<?php
+
+$myCustotalSql = "SELECT * FROM `customers` WHERE createdBy = :createdBy";
+$myCustotalsmtp = $conn->prepare($myCustotalSql);
+$myCustotalsmtp->bindParam(':createdBy', $_SESSION['userName']);
+$myCustotalsmtp->execute();
+$Mycustotal = $myCustotalsmtp->rowCount();
+
+
+$myCustotalSql1 = "SELECT * FROM `customers` WHERE createdBy = :createdBy AND createdDate = :createdDate";
+$myCustotalsmtp1 = $conn->prepare($myCustotalSql1);
+$myCustotalsmtp1->bindParam(':createdBy', $_SESSION['userName']);
+$myCustotalsmtp1->bindParam(':createdDate',$date );
+$myCustotalsmtp1->execute();
+$Mycustotal1 = $myCustotalsmtp1->rowCount();
+
+
+$myCustotalSql2 = "SELECT * FROM `customers`";
+$myCustotalsmtp2 = $conn->prepare($myCustotalSql2);
+$myCustotalsmtp2->execute();
+$Mycustotal2 = $myCustotalsmtp2->rowCount();
+
+
+
+$myCustotalSql3 = "SELECT * FROM `customers` WHERE  createdDate = :createdDate";
+$myCustotalsmtp3 = $conn->prepare($myCustotalSql3);
+$myCustotalsmtp3->bindParam(':createdDate',$date );
+$myCustotalsmtp3->execute();
+$Mycustotal3 = $myCustotalsmtp3->rowCount();
+
+?>
+
+
+-->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -150,33 +194,33 @@
                     <i class='bx bx-calendar-check'></i>
                     <span class="info">
                         <h3>
-                            1,074
+                            <?php echo $Mycustotal; ?>
                         </h3>
-                        <p>Paid Order</p>
+                        <p>My Customers</p>
                     </span>
                 </li>
                 <li><i class='bx bx-show-alt'></i>
                     <span class="info">
                         <h3>
-                            3,944
+                            <?php echo $Mycustotal1; ?>
                         </h3>
-                        <p>Site Visit</p>
+                        <p>Today My Crations</p>
                     </span>
                 </li>
                 <li><i class='bx bx-line-chart'></i>
                     <span class="info">
                         <h3>
-                            14,721
+                            <?php echo $Mycustotal2 ; ?>
                         </h3>
-                        <p>Searches</p>
+                        <p>Total Customers</p>
                     </span>
                 </li>
-                <li><i class='bx bx-dollar-circle'></i>
+                <li><i class='bx bx-calendar-check'></i>
                     <span class="info">
                         <h3>
-                            $6,742
+                            <?php echo $Mycustotal3 ; ?>
                         </h3>
-                        <p>Total Sales</p>
+                        <p>Today All Creations</p>
                     </span>
                 </li>
             </ul>
@@ -349,6 +393,17 @@
               <br><br>
         </main>
 
+
+        <!-- user Customer -->
+        <?php
+
+            $myCusSql = "SELECT * FROM `customers` WHERE createdBy = :createdBy";
+            $myCusRes = $conn->prepare($myCusSql);
+            $myCusRes->bindParam(':createdBy', $_SESSION['userName']);
+            $myCusRes->execute();
+
+        ?>
+
         <main id="myCustomers" >
         
         <div class="container">
@@ -364,26 +419,24 @@
                     <th>Phone</th>
                     <th>Main Group</th>
                     <th>Sub Group</th>
+                    <th>Date</th>
+                    <th>By</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Example table data -->
+                 <?php while($myCusRow = $myCusRes->fetch(PDO::FETCH_ASSOC)){ ?>
                 <tr>
-                    <td>ABC Corp</td>
-                    <td>John Doe</td>
-                    <td>john@example.com</td>
-                    <td>123-456-7890</td>
-                    <td>Group A</td>
-                    <td>Sub Group 1</td>
+                    <td><?php echo $myCusRow['company'];?></td>
+                    <td><?php echo $myCusRow['contactp'];?></td>
+                    <td><?php echo $myCusRow['email'];?></td>
+                    <td><?php echo $myCusRow['phone'];?></td>
+                    <td><?php echo $myCusRow['mainGroup'];?></td>
+                    <td><?php echo $myCusRow['subGroup'];?></td>
+                    <td><?php echo $myCusRow['createdDate'];?></td>
+                    <td><?php echo $myCusRow['createdBy'];?></td>
                 </tr>
-                <tr>
-                    <td>XYZ Inc</td>
-                    <td>Jane Smith</td>
-                    <td>jane@example.com</td>
-                    <td>987-654-3210</td>
-                    <td>Group B</td>
-                    <td>Sub Group 2</td>
-                </tr>
+               <?php } ?>
                 <!-- Add more rows as needed -->
             </tbody>
         </table>
