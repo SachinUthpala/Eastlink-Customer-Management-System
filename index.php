@@ -1,3 +1,39 @@
+<?php
+
+session_start();
+
+
+if($_SESSION['wrong_email'] = 1) {
+	echo '
+                
+	<script>
+	
+		Swal.fire({
+		icon: "error",
+		title: "Oops...",
+		text: "User Not Found ! Try again",
+		});
+	</script>
+	';
+	$_SESSION['wrong_email'] = null;
+}else if($_SESSION['wrong_pass'] = 1) {
+	echo '
+                
+	<script>
+	
+		Swal.fire({
+		icon: "error",
+		title: "Oops...",
+		text: "Wrong Password ! Try again",
+		});
+	</script>
+	';
+	$_SESSION['wrong_pass'] = null;
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
