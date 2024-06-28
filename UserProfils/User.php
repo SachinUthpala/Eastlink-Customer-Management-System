@@ -583,7 +583,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             let tr = table.getElementsByTagName("tr");
 
             for (let i = 1; i < tr.length; i++) {
-                let td = tr[i].getElementsByTagName("td")[4]; // Sub Group column
+                let td = tr[i].getElementsByTagName("td")[0]; // Sub Group column
                 if (td) {
                     let txtValue = td.textContent || td.innerText;
                     if (filter === "all" || txtValue === filter) {
