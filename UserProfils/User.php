@@ -23,6 +23,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" ></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js" ></script>
+
+    <!-- 
+    download -->
 </head>
 
 <body>
@@ -36,8 +39,8 @@
         <ul class="side-menu">
             <li class="active" onclick="shoDash()"><a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
             <li><a href="#" onclick="shoAddCus()"><i class='bx bxs-user-plus'></i>Add Customer</a></li>
-            <li><a href="#"><i class='bx bx-group'></i>My Customers</a></li>
-            <li><a href="#"><i class='bx bx-group'></i>All Customers</a></li>
+            <li><a href="#" onclick="showMyCustomers()"><i class='bx bx-table'></i>My Customers</a></li>
+            <li><a href="#"><i class='bx bxs-spreadsheet'></i>All Customers</a></li>
             <li  
                 <?php
                     if($_SESSION['admin'] == 1) {
@@ -47,6 +50,25 @@
                     }
                 ?>
             ><a href="#"><i class='bx bx-analyse'></i>Analytics</a></li>
+            <li  
+                <?php
+                    if($_SESSION['admin'] == 1) {
+                        echo "style = 'display: block;'";
+                    }else {
+                        echo "style = 'display: none;'";
+                    }
+                ?>
+            ><a href="#"><i class='bx bx-folder-plus'></i>Add User</a></li>
+            <li  
+                <?php
+                    if($_SESSION['admin'] == 1) {
+                        echo "style = 'display: block;'";
+                    }else {
+                        echo "style = 'display: none;'";
+                    }
+                ?>
+            ><a href="#"><i class='bx bx-table'></i>All Users</a></li>
+            
         </ul>
         <ul class="side-menu">
             <li onclick="logout()">
@@ -327,6 +349,79 @@
               <br><br>
         </main>
 
+        <main id="myCustomers" >
+        
+        <div class="container">
+        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search by name..." class="search-box">
+        <button id="downloadExcel">Download Excel</button>
+        
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Contact Person</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Main Group</th>
+                    <th>Sub Group</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example table data -->
+                <tr>
+                    <td>ABC Corp</td>
+                    <td>John Doe</td>
+                    <td>john@example.com</td>
+                    <td>123-456-7890</td>
+                    <td>Group A</td>
+                    <td>Sub Group 1</td>
+                </tr>
+                <tr>
+                    <td>XYZ Inc</td>
+                    <td>Jane Smith</td>
+                    <td>jane@example.com</td>
+                    <td>987-654-3210</td>
+                    <td>Group B</td>
+                    <td>Sub Group 2</td>
+                </tr>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+    <script src="./table2excel.js"></script>
+<script>
+    function searchTable() {
+        let input = document.getElementById("searchInput");
+        let filter = input.value.toLowerCase();
+        let table = document.getElementById("dataTable");
+        let tr = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < tr.length; i++) {
+            let tds = tr[i].getElementsByTagName("td");
+            let match = false;
+            for (let j = 0; j < tds.length; j++) {
+                if (tds[j]) {
+                    let txtValue = tds[j].textContent || tds[j].innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        match = true;
+                        break;
+                    }
+                }
+            }
+            tr[i].style.display = match ? "" : "none";
+        }
+    }
+
+    document.getElementById("downloadExcel").addEventListener("click", function() {
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("#dataTable"));
+    } )
+
+
+</script>
+
+        </main>
+
     </div>
 
     <script>
@@ -334,11 +429,19 @@
         const shoDash = () => {
             document.getElementById("Dashboard").style.display = "block";
             document.getElementById("AddCustomer").style.display = "none";
+            document.getElementById("myCustomers").style.display = "none";
         }
 
         const shoAddCus = () => {
             document.getElementById("Dashboard").style.display = "none";
             document.getElementById("AddCustomer").style.display = "block";
+            document.getElementById("myCustomers").style.display = "none";
+        }
+
+        const showMyCustomers = () => {
+            document.getElementById("Dashboard").style.display = "none";
+            document.getElementById("AddCustomer").style.display = "none";
+            document.getElementById("myCustomers").style.display = "block";
         }
 
 
@@ -428,6 +531,7 @@
 ?>
 
     <script src="../Asserts/Scripts/Script.js"></script>
+    
 </body>
 
 </html>

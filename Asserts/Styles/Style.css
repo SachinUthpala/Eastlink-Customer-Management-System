@@ -626,6 +626,10 @@ body{
     display: none;
 }
 
+#myCustomers{
+    display: none;
+}
+
 .container{
     background: #fff;
     
@@ -756,3 +760,64 @@ body{
   #sub05{
     display: none;
   }
+
+
+
+  .container {
+    margin: 0 auto;
+    max-width: 1000px;
+}
+
+.search-box {
+    width: 100%;
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: box-shadow 0.3s ease;
+}
+
+.search-box:focus {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+thead {
+    background-color: #333;
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    transition: background-color 0.3s ease;
+}
+
+tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+tbody tr {
+    transition: background-color 0.3s ease;
+}
+
+
+
+
+
+
+
+
+
+
+  
