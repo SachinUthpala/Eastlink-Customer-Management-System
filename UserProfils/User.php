@@ -549,7 +549,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                     <td><?php echo $CusRow['subGroup'];?></td>
                     <td><?php echo $CusRow['company'];?></td>
                     <td><?php echo $CusRow['contactp'];?></td>
-                    <th><?php echo $CusRow['position']; ?></th>
+                    <td><?php echo $CusRow['position']; ?></td>
                     <td><?php echo $CusRow['email'];?></td>
                     <td><?php echo $CusRow['phone'];?></td>
                     
