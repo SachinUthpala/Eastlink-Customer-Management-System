@@ -15,5 +15,5 @@ session_destroy();
 
 // Redirect to the login page or any other desired page after logout
 $_SESSION['logout'] = 1;
-header("Location: ../index.php");
+header("Location: ../index.html");
 exit();

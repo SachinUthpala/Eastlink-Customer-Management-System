@@ -1,6 +1,12 @@
 <?php
  require_once '../Db/Db.Conn.php';
  session_start();
+
+ if(!$_SESSION['userName']) {
+    header("Location:../index.html");
+    exit;
+ }
+
 ?>
 
 <!DOCTYPE html>
@@ -29,14 +35,21 @@
         </a>
         <ul class="side-menu">
             <li class="active" onclick="shoDash()"><a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
-            <li><a href="#" onclick="shoAddCus()"><i class='bx bx-store-alt'></i>Add Custome</a></li>
-            <li ><a href="#"><i class='bx bx-analyse'></i>Analytics</a></li>
-            <li><a href="#"><i class='bx bx-message-square-dots'></i>Tickets</a></li>
-            <li><a href="#"><i class='bx bx-group'></i>Users</a></li>
-            <li><a href="#"><i class='bx bx-cog'></i>Settings</a></li>
+            <li><a href="#" onclick="shoAddCus()"><i class='bx bxs-user-plus'></i>Add Customer</a></li>
+            <li><a href="#"><i class='bx bx-group'></i>My Customers</a></li>
+            <li><a href="#"><i class='bx bx-group'></i>All Customers</a></li>
+            <li  
+                <?php
+                    if($_SESSION['admin'] == 1) {
+                        echo "style = 'display: block;'";
+                    }else {
+                        echo "style = 'display: none;'";
+                    }
+                ?>
+            ><a href="#"><i class='bx bx-analyse'></i>Analytics</a></li>
         </ul>
         <ul class="side-menu">
-            <li>
+            <li onclick="logout()">
                 <a href="#" class="logout">
                     <i class='bx bx-log-out-circle'></i>
                     Logout
@@ -45,6 +58,31 @@
         </ul>
     </div>
     <!-- End of Sidebar -->
+
+
+    <!-- logout Scripts -->
+    <script>
+        function logout() {
+            
+            Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, Log Out!"
+            }).then((result) => {
+            if (result.isConfirmed) {
+                location.href = "../Db/logout.php"
+            }
+            });
+
+        }
+    </script>
+
+
+
 
     <!-- Main Content -->
     <div class="content">
@@ -185,6 +223,9 @@
             <section class="container">
                 <header>Add Customer</header>
                 <form action="../Db/createUser.php" method="post" class="form">
+                    
+                    <input type="hidden" name="user" value="<?php echo $_SESSION['userName']; ?>" />
+
                     <div class="input-box">
                         <label>Company Name</label>
                         <input type="text" name="company" placeholder="Enter Company Name" required />

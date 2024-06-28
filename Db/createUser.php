@@ -4,9 +4,9 @@ require_once './Db.Conn.php';
 session_start();
 $date = date("Y/m/d");
 echo $date;
-$createdBy = "Sachin";
 
 if (isset($_POST['submit'])) {
+    $createdBy = $_POST['user'];
     $company = $_POST['company'];
     $contactperson = $_POST['contactperson'];
     $email = $_POST['email'];

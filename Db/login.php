@@ -31,6 +31,7 @@ if(isset($_POST['submitUser'])){
             if($password == $userPass){
                 $_SESSION['login sucessfull'] = 1;
                 $_SESSION['userName'] = $row['username'];
+                $_SESSION['admin'] = $row['adminAccess'];
                 header("Location: ../UserProfils/User.php");
             }else{
                 $_SESSION['wrong_pass'] = 1;
