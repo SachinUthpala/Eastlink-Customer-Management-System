@@ -308,6 +308,13 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                             <input type="number" name="phone" placeholder="Enter phone number" required />
                         </div>
                     </div>
+
+                    <div class="column">
+                        <div class="input-box">
+                            <label>Whatsapp Number</label>
+                            <input type="number" name="whatsapp" placeholder="Enter phone number" required />
+                        </div>
+                    </div>
             
                     <div class="gender-box">
                         <h3>Group</h3>
@@ -532,7 +539,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                 <!-- Example table data -->
                 <?php while($CusRow = $CusRes->fetch(PDO::FETCH_ASSOC)){ ?>
                 <tr>
-                    
+
                     <td><?php echo $CusRow['subGroup'];?></td>
                     <td><?php echo $CusRow['company'];?></td>
                     <td><?php echo $CusRow['contactp'];?></td>
