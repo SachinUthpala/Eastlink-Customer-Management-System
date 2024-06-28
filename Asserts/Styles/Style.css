@@ -816,7 +816,9 @@ tbody tr {
 }
 
 
-
+#AllUsers{
+    display: none;
+}
 
 
 #downloadExcel{
@@ -840,6 +842,16 @@ tbody tr {
     cursor: pointer;
 }
 
+
+#downloadExcel2{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #ff0037;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
 
 
   
