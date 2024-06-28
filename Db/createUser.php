@@ -14,6 +14,7 @@ if (isset($_POST['submit'])) {
     $whatsapp = $_POST['whatsapp'];
     $mainGroup = $_POST['Group'];
     $subGroup = $_POST['subGroup'];
+    $position = $_POST['position'];
 
     try {
         // Check if the customer already exists
@@ -30,8 +31,8 @@ if (isset($_POST['submit'])) {
         }
 
         // Insert new customer
-        $addCustomerSql = "INSERT INTO `customers`( `company`, `contactp`, `email`, `phone`,`whatsapp`, `mainGroup`, `subGroup`, `createdBy`) VALUES (
-            :company, :contactp, :email, :phone, :whatsapp , :mainGroup, :subGroup, :createdBy)";
+        $addCustomerSql = "INSERT INTO `customers`( `company`, `contactp`, `position`, `email`, `phone`,`whatsapp`, `mainGroup`, `subGroup`, `createdBy`) VALUES (
+            :company, :contactp, :position ,:email, :phone, :whatsapp , :mainGroup, :subGroup, :createdBy)";
         $addCustomer = $conn->prepare($addCustomerSql);
 
         $addCustomer->bindParam(':company', $company);
@@ -42,6 +43,7 @@ if (isset($_POST['submit'])) {
         $addCustomer->bindParam(':mainGroup', $mainGroup);
         $addCustomer->bindParam(':subGroup', $subGroup);
         $addCustomer->bindParam(':createdBy', $createdBy);
+        $addCustomer->bindParam(':position' , $position);
 
         $addCustomer->execute();
 

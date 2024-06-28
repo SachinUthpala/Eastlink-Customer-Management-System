@@ -296,6 +296,11 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                         <label>Contact Person</label>
                         <input type="text" name="contactperson" placeholder="Enter Contact Person name" required />
                     </div>
+
+                    <div class="input-box">
+                        <label>Position</label>
+                        <input type="text" name="position" placeholder="Enter Contact Person name" required />
+                    </div>
             
                     <div class="input-box">
                         <label>Email Address</label>
