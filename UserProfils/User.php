@@ -423,10 +423,10 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                     <th>Catogary</th>
                     <th>Company</th>
                     <th>Contact Person</th>
+                    <th>Position</th>
                     <th>Email</th>
                     <th>Phone</th>
                     <th>Whatsapp</th>
-                    <th>Date</th>
                     <th>By</th>
                 </tr>
             </thead>
@@ -437,10 +437,10 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                     <td><?php echo $myCusRow['subGroup'];?></td>
                     <td><?php echo $myCusRow['company'];?></td>
                     <td><?php echo $myCusRow['contactp'];?></td>
+                    <td><?php echo $myCusRow['position']; ?></td>
                     <td><?php echo $myCusRow['email'];?></td>
                     <td><?php echo $myCusRow['phone'];?></td>
                     <td><?php echo $myCusRow['whatsapp'];?></td>
-                    <td><?php echo $myCusRow['createdDate'];?></td>
                     <td><?php echo $myCusRow['createdBy'];?></td>
                 </tr>
                <?php } ?>
@@ -535,6 +535,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                     <th>Catogary</th>
                     <th>Company</th>
                     <th>Contact Person</th>
+                    <th>Position</th>
                     <th>Email</th>
                     <th>Phone</th>
                     
@@ -548,6 +549,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                     <td><?php echo $CusRow['subGroup'];?></td>
                     <td><?php echo $CusRow['company'];?></td>
                     <td><?php echo $CusRow['contactp'];?></td>
+                    <th><?php echo $CusRow['position']; ?></th>
                     <td><?php echo $CusRow['email'];?></td>
                     <td><?php echo $CusRow['phone'];?></td>
                     
