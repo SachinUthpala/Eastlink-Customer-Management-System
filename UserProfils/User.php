@@ -520,22 +520,25 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
         <table id="dataTable1">
             <thead>
                 <tr>
+                    <th>Catogary</th>
                     <th>Company</th>
                     <th>Contact Person</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Sub Group</th>
+                    
                 </tr>
             </thead>
             <tbody>
                 <!-- Example table data -->
                 <?php while($CusRow = $CusRes->fetch(PDO::FETCH_ASSOC)){ ?>
                 <tr>
+                    
+                    <td><?php echo $CusRow['subGroup'];?></td>
                     <td><?php echo $CusRow['company'];?></td>
                     <td><?php echo $CusRow['contactp'];?></td>
                     <td><?php echo $CusRow['email'];?></td>
                     <td><?php echo $CusRow['phone'];?></td>
-                    <td><?php echo $CusRow['subGroup'];?></td>
+                    
                 </tr>
                 <?php } ?>
                 <!-- Add more rows as needed -->
