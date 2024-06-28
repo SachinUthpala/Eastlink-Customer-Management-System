@@ -415,12 +415,12 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
         <table id="dataTable">
             <thead>
                 <tr>
+                    <th>Catogary</th>
                     <th>Company</th>
                     <th>Contact Person</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Main Group</th>
-                    <th>Sub Group</th>
+                    <th>Whatsapp</th>
                     <th>Date</th>
                     <th>By</th>
                 </tr>
@@ -429,12 +429,12 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                 <!-- Example table data -->
                  <?php while($myCusRow = $myCusRes->fetch(PDO::FETCH_ASSOC)){ ?>
                 <tr>
+                    <td><?php echo $myCusRow['subGroup'];?></td>
                     <td><?php echo $myCusRow['company'];?></td>
                     <td><?php echo $myCusRow['contactp'];?></td>
                     <td><?php echo $myCusRow['email'];?></td>
                     <td><?php echo $myCusRow['phone'];?></td>
-                    <td><?php echo $myCusRow['mainGroup'];?></td>
-                    <td><?php echo $myCusRow['subGroup'];?></td>
+                    <td><?php echo $myCusRow['whatsapp'];?></td>
                     <td><?php echo $myCusRow['createdDate'];?></td>
                     <td><?php echo $myCusRow['createdBy'];?></td>
                 </tr>
