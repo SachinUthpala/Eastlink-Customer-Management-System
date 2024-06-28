@@ -11,6 +11,7 @@ if (isset($_POST['submit'])) {
     $contactperson = $_POST['contactperson'];
     $email = $_POST['email'];
     $phone = $_POST['phone'];
+    $whatsapp = $_POST['whatsapp'];
     $mainGroup = $_POST['Group'];
     $subGroup = $_POST['subGroup'];
 
@@ -29,14 +30,15 @@ if (isset($_POST['submit'])) {
         }
 
         // Insert new customer
-        $addCustomerSql = "INSERT INTO `customers`( `company`, `contactp`, `email`, `phone`, `mainGroup`, `subGroup`, `createdBy`) VALUES (
-            :company, :contactp, :email, :phone, :mainGroup, :subGroup, :createdBy)";
+        $addCustomerSql = "INSERT INTO `customers`( `company`, `contactp`, `email`, `phone`,`whatsapp`, `mainGroup`, `subGroup`, `createdBy`) VALUES (
+            :company, :contactp, :email, :phone, :whatsapp , :mainGroup, :subGroup, :createdBy)";
         $addCustomer = $conn->prepare($addCustomerSql);
 
         $addCustomer->bindParam(':company', $company);
         $addCustomer->bindParam(':contactp', $contactperson);
         $addCustomer->bindParam(':email', $email);
         $addCustomer->bindParam(':phone', $phone);
+        $addCustomer->bindParam(':whatsapp', $whatsapp);
         $addCustomer->bindParam(':mainGroup', $mainGroup);
         $addCustomer->bindParam(':subGroup', $subGroup);
         $addCustomer->bindParam(':createdBy', $createdBy);
