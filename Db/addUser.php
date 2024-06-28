@@ -1,42 +1,44 @@
 <?php
 // Include your database connection file
+// Include your database connection file
 require_once './Db.Conn.php';
 session_start();
 
 // Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
     // Get the form data
     $username = $_POST['username'];
     $email = $_POST['email'];
-    $password = $_POST['password'];
-    $adminAccess = $_POST['adminAccess'];
+    $password = $_POST['Passeword'];
+    $admin = (int)$_POST['adminAccess'];
+    
+    // Debugging output
+    echo $username . " " . $email . " " . $password . " " . $admin;
 
     // Prepare an SQL statement to insert the data
-    $sql = "INSERT INTO users (username, email, password, adminAccess) VALUES (:username, :email, :password, :adminAccess)";
+    $sql = "INSERT INTO `user` (`username`, `usermail`, `userpassword`, `adminAccess`) VALUES (:username, :usermail, :userpassword, :adminAccess)";
+
+    // Prepare the SQL statement
     $stmt = $conn->prepare($sql);
-
-    // Bind the parameters
+    
+    // Bind parameters to the SQL query
     $stmt->bindParam(':username', $username);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':password', $password ); // Hash the password before storing it
-    $stmt->bindParam(':adminAccess', $adminAccess);
+    $stmt->bindParam(':usermail', $email);
+    $stmt->bindParam(':userpassword', $password);
+    $stmt->bindParam(':adminAccess', $admin);
 
-    // Execute the statement
-    if ($stmt->execute()) {
-        // Redirect to a success page or display a success message
+    try {
+        // Execute the SQL statement
+        $stmt->execute();
+        $_SESSION['useraadded'] = 1;
         echo "User added successfully!";
-        $_SESSION['UserAdded'] = 1  ;
-        header("Location: ../UserProfils/User.php");
-    } else {
-        // Redirect to an error page or display an error message
-        echo "Error adding user.";
-        $_SESSION['UserAddednot'] = 1  ;
-        header("Location: ../UserProfils/User.php");
+        header("Location:../UserProfils/User.php");
+    } catch (PDOException $e) {
+        // Catch any PDO exceptions and display the error message
+        echo "Error: " . $e->getMessage();
+        $_SESSION['usernotadded'] = 1;
+        header("Location:../UserProfils/User.php");
     }
-} else {
-    // Redirect to the form page if the form is not submitted correctly
-    $_SESSION['UserAddednot'] = 1  ;
-    header("Location: ../UserProfils/User.php");
-    exit;
 }
+
 ?>

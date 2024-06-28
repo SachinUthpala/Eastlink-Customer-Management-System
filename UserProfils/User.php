@@ -572,7 +572,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                     <div class="column">
                         <div class="input-box">
                             <label>User Passeword</label>
-                            <input type="number" name="Passeword" placeholder="Enter phone number" required />
+                            <input type="text" name="Passeword" placeholder="Enter phone number" required />
                         </div>
                     </div>
 
