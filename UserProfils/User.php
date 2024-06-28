@@ -222,7 +222,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             <!-- End of Insights -->
 
             <div class="bottom-data">
-                <div class="orders">
+                <!-- <div class="orders">
                     <div class="header">
                         <i class='bx bx-receipt'></i>
                         <h3>Recent Orders</h3>
@@ -264,7 +264,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                             </tr>
                         </tbody>
                     </table>
-                </div>
+                </div> -->
 
                 
 
@@ -402,7 +402,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
         <main id="myCustomers" >
         
         <div class="container">
-        <input type="text" id="searchInput" onkeyup="searchTable()" placeholder="Search by name..." class="search-box">
+        <input type="text" id="searchInput" onkeyup="searchTable22()" placeholder="Search by name..." class="search-box">
         <button id="downloadExcel">Download Excel</button>
         
         <table id="dataTable">
@@ -438,7 +438,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
     </div>
     <script src="./table2excel.js"></script>
 <script>
-    function searchTable() {
+    function searchTable22() {
         let input = document.getElementById("searchInput");
         let filter = input.value.toLowerCase();
         let table = document.getElementById("dataTable");
@@ -480,12 +480,43 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
         ?>
 
         <!-- all customers -->
-        <main id="AllCustomers" >
-        
-        <div class="container">
+        <main id="AllCustomers">
+    <div class="container">
         <input type="text" id="searchInput1" onkeyup="searchTable()" placeholder="Search by name..." class="search-box">
+
+        <div class="inputgroups">
+            <select id="subGroupFilter" onchange="filterTableBySubGroup()" class="search-box">
+                <option value="all">All Sub Groups</option>
+                <option value="Computers & Networks">Computers & Networks</option>
+                <option value="Solar">Solar</option>
+                <option value="Telecommunication">Telecommunication</option>
+                <option value="ISPs">ISPs</option>
+                <option value="Computer Software Companies">Computer Software Companies</option>
+                <option value="Universities & Institutes">Universities & Institutes</option>
+                <option value="Banks">Banks</option>
+                <option value="Hotels">Hotels</option>
+                <option value="Hospitals">Hospitals</option>
+                <option value="Factories-Garments">Factories-Garments</option>
+                <option value="Factories-Others">Factories-Others</option>
+                <option value="Airlines">Airlines</option>
+                <option value="Electrical">Electrical</option>
+                <option value="Electrical - AC">Electrical - AC</option>
+                <option value="Civil">Civil</option>
+                <option value="Interior Decors">Interior Decors</option>
+                <option value="Government & NGO">Government & NGO</option>
+                <option value="Offices & Companies">Offices & Companies</option>
+                <option value="Shpping">Shpping</option>
+                <option value="TV & radio">TV & radio</option>
+                <option value="Competitors">Competitors</option>
+                <option value="Informed to remove">Informed to remove</option>
+                <option value="General">General</option>
+                <option value="Individuals">Individuals</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
         <button id="downloadExcel1">Download Excel</button>
-        
+
         <table id="dataTable1">
             <thead>
                 <tr>
@@ -493,63 +524,101 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                     <th>Contact Person</th>
                     <th>Email</th>
                     <th>Phone</th>
-                    <th>Main Group</th>
                     <th>Sub Group</th>
-                    <th>Date</th>
-                    <th>By</th>
                 </tr>
             </thead>
             <tbody>
                 <!-- Example table data -->
-                 <?php while($CusRow = $CusRes->fetch(PDO::FETCH_ASSOC)){ ?>
+                <?php while($CusRow = $CusRes->fetch(PDO::FETCH_ASSOC)){ ?>
                 <tr>
                     <td><?php echo $CusRow['company'];?></td>
                     <td><?php echo $CusRow['contactp'];?></td>
                     <td><?php echo $CusRow['email'];?></td>
                     <td><?php echo $CusRow['phone'];?></td>
-                    <td><?php echo $CusRow['mainGroup'];?></td>
                     <td><?php echo $CusRow['subGroup'];?></td>
-                    <td><?php echo $CusRow['createdDate'];?></td>
-                    <td><?php echo $CusRow['createdBy'];?></td>
                 </tr>
-               <?php } ?>
+                <?php } ?>
                 <!-- Add more rows as needed -->
             </tbody>
         </table>
     </div>
     <script src="./table2excel.js"></script>
-<script>
-    function searchTable() {
-        let input = document.getElementById("searchInput1");
-        let filter = input.value.toLowerCase();
-        let table = document.getElementById("dataTable1");
-        let tr = table.getElementsByTagName("tr");
+    <script>
+        function searchTable() {
+            let input = document.getElementById("searchInput1");
+            let filter = input.value.toLowerCase();
+            let table = document.getElementById("dataTable1");
+            let tr = table.getElementsByTagName("tr");
 
-        for (let i = 1; i < tr.length; i++) {
-            let tds = tr[i].getElementsByTagName("td");
-            let match = false;
-            for (let j = 0; j < tds.length; j++) {
-                if (tds[j]) {
-                    let txtValue = tds[j].textContent || tds[j].innerText;
-                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                        match = true;
-                        break;
+            for (let i = 1; i < tr.length; i++) {
+                let tds = tr[i].getElementsByTagName("td");
+                let match = false;
+                for (let j = 0; j < tds.length; j++) {
+                    if (tds[j]) {
+                        let txtValue = tds[j].textContent || tds[j].innerText;
+                        if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                            match = true;
+                            break;
+                        }
+                    }
+                }
+                tr[i].style.display = match ? "" : "none";
+            }
+        }
+
+        function filterTableBySubGroup() {
+            let select = document.getElementById("subGroupFilter");
+            let filter = select.value;
+            let table = document.getElementById("dataTable1");
+            let tr = table.getElementsByTagName("tr");
+
+            for (let i = 1; i < tr.length; i++) {
+                let td = tr[i].getElementsByTagName("td")[4]; // Sub Group column
+                if (td) {
+                    let txtValue = td.textContent || td.innerText;
+                    if (filter === "all" || txtValue === filter) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
                     }
                 }
             }
-            tr[i].style.display = match ? "" : "none";
         }
-    }
 
-    document.getElementById("downloadExcel1").addEventListener("click", function() {
-        var table2excel = new Table2Excel();
-        table2excel.export(document.querySelectorAll("#dataTable1"));
-    } )
+        function createFilteredTable() {
+            // Create a new table element
+            let table = document.createElement("table");
+            table.id = "filteredTable";
+
+            // Clone the original table's header
+            let header = document.querySelector("#dataTable1 thead").cloneNode(true);
+            table.appendChild(header);
+
+            // Add rows that are currently visible
+            let rows = document.querySelectorAll("#dataTable1 tbody tr");
+            let tbody = document.createElement("tbody");
+            rows.forEach(row => {
+                if (row.style.display !== "none") {
+                    tbody.appendChild(row.cloneNode(true));
+                }
+            });
+            table.appendChild(tbody);
+
+            // Append the table to the body (or a hidden div) temporarily
+            document.body.appendChild(table);
+            return table;
+        }
+
+        document.getElementById("downloadExcel1").addEventListener("click", function() {
+            let filteredTable = createFilteredTable();
+            var table2excel = new Table2Excel();
+            table2excel.export(filteredTable);
+            document.body.removeChild(filteredTable); // Remove the temporary table after export
+        });
+    </script>
+</main>
 
 
-</script>
-
-        </main>
 
 
 

@@ -854,4 +854,22 @@ tbody tr {
 }
 
 
+#downloadExcel4{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #0022ff;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+#allUsers{
+    display: none;
+}
+
+#addUser{
+    display: none;
+}
+
   
