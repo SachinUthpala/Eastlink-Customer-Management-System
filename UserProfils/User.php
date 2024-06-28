@@ -93,6 +93,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                         echo "style = 'display: none;'";
                     }
                 ?>
+                onclick="shoAdduser()"
             ><a href="#"><i class='bx bx-folder-plus'></i>Add User</a></li>
             <li  
                 <?php
@@ -102,8 +103,8 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
                         echo "style = 'display: none;'";
                     }
                 ?>
-                onclick="showAllUsers()"
-            ><a href="#"><i class='bx bx-table'></i>All Users</a></li>
+                
+            ><a href="#" ><i class='bx bx-table'></i>All Users</a></li>
             
         </ul>
         <ul class="side-menu">
@@ -468,14 +469,6 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
         </main>
 
 
-
-
-
-
-
-
-
-
         <?php
 
             $CusSql = "SELECT * FROM `customers`";
@@ -556,78 +549,53 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
 
         </main>
 
+
+
+        <!-- add user -->
+         <main id="addUser">
+         <section class="container">
+                <header>Add User</header>
+                <form action="../Db/addUser.php" method="post" class="form">
+                    
+
+
+                    <div class="input-box">
+                        <label>User Name</label>
+                        <input type="text" name="username" placeholder="Enter Company Name" required />
+                    </div>
+            
+                    <div class="input-box">
+                        <label>User Email</label>
+                        <input type="text" name="email" placeholder="Enter email address" required />
+                    </div>
+            
+                    <div class="column">
+                        <div class="input-box">
+                            <label>User Passeword</label>
+                            <input type="number" name="Passeword" placeholder="Enter phone number" required />
+                        </div>
+                    </div>
+
+                    <div class="input-box address">
+                        <label>Admin Access</label>
+                        <div class="column">
+                            <div class="select-box">
+                                <select name="adminAccess" id="subGroupSelect">
+                                        <option value="0">No</option>
+                                        <option value="1">Yes</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+            
+            
+                    
+                    <button type="submit" name="submit">Submit</button>
+                </form>
+            </section>
+         </main>
         
-        <?php
-
-        $UserSql = "SELECT * FROM `users`";
-        $UserRes = $conn->prepare($UserSql);
-        $UserRes->execute();
-
-        ?>
-
-        <!-- all users -->
-        <main id="AllUsers" >
-        
-        <div class="container">
-        <input type="text" id="searchInput2" onkeyup="searchTable()" placeholder="Search by name..." class="search-box">
-        <button id="downloadExcel2">Download Excel</button>
-        
-        <table id="dataTable2">
-            <thead>
-                <tr>
-                    <th>UserName</th>
-                    <th>UserMail</th>
-                    <th>Password</th>
-                    <th>Admin Access</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Example table data -->
-                 <?php while($UserRow = $UserRes->fetch(PDO::FETCH_ASSOC)){ ?>
-                <tr>
-                    <td><?php echo $UserRow['username'];?></td>
-                    <td><?php echo $UserRow['usermail'];?></td>
-                    <td><?php echo $UserRow['userpassword'];?></td>
-                    <td><?php echo $UserRow['adminAccess'];?></td>
-                </tr>
-               <?php } ?>
-                <!-- Add more rows as needed -->
-            </tbody>
-        </table>
-    </div>
-    <script src="./table2excel.js"></script>
-<script>
-    function searchTable() {
-        let input = document.getElementById("searchInput2");
-        let filter = input.value.toLowerCase();
-        let table = document.getElementById("dataTable2");
-        let tr = table.getElementsByTagName("tr");
-
-        for (let i = 1; i < tr.length; i++) {
-            let tds = tr[i].getElementsByTagName("td");
-            let match = false;
-            for (let j = 0; j < tds.length; j++) {
-                if (tds[j]) {
-                    let txtValue = tds[j].textContent || tds[j].innerText;
-                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
-                        match = true;
-                        break;
-                    }
-                }
-            }
-            tr[i].style.display = match ? "" : "none";
-        }
-    }
-
-    document.getElementById("downloadExcel2").addEventListener("click", function() {
-        var table2excel = new Table2Excel();
-        table2excel.export(document.querySelectorAll("#dataTable2"));
-    } )
-
-
-</script>
-
-        </main>
+      
 
 
 
@@ -650,7 +618,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             document.getElementById("AddCustomer").style.display = "none";
             document.getElementById("myCustomers").style.display = "none";
             document.getElementById("AllCustomers").style.display = "none";
-            document.getElementById("AllUsers").style.display = "none";
+            document.getElementById("addUser").style.display = "none";
         }
 
         const shoAddCus = () => {
@@ -658,7 +626,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             document.getElementById("AddCustomer").style.display = "block";
             document.getElementById("myCustomers").style.display = "none";
             document.getElementById("AllCustomers").style.display = "none";
-            document.getElementById("AllUsers").style.display = "none";
+            document.getElementById("addUser").style.display = "none";
         }
 
         const showMyCustomers = () => {
@@ -666,7 +634,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             document.getElementById("AddCustomer").style.display = "none";
             document.getElementById("myCustomers").style.display = "block";
             document.getElementById("AllCustomers").style.display = "none";
-            document.getElementById("AllUsers").style.display = "none";
+            document.getElementById("addUser").style.display = "none";
         }
 
         const showAllCustomers = () => {
@@ -674,16 +642,18 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             document.getElementById("AddCustomer").style.display = "none";
             document.getElementById("myCustomers").style.display = "none";
             document.getElementById("AllCustomers").style.display = "block";
-            document.getElementById("AllUsers").style.display = "none";
+            document.getElementById("addUser").style.display = "none";
         }
 
-        const showAllUsers = () => {
+        const shoAdduser = () => {
+            document.getElementById("addUser").style.display = "block";
             document.getElementById("Dashboard").style.display = "none";
             document.getElementById("AddCustomer").style.display = "none";
             document.getElementById("myCustomers").style.display = "none";
             document.getElementById("AllCustomers").style.display = "none";
-            document.getElementById("AllUsers").style.display = "block";
         }
+
+        
 
 
 
