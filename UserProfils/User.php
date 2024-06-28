@@ -84,7 +84,7 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             <li class="active" onclick="shoDash()"><a href="#"><i class='bx bxs-dashboard'></i>Dashboard</a></li>
             <li><a href="#" onclick="shoAddCus()"><i class='bx bxs-user-plus'></i>Add Customer</a></li>
             <li><a href="#" onclick="showMyCustomers()"><i class='bx bx-table'></i>My Customers</a></li>
-            <li><a href="#"><i class='bx bxs-spreadsheet'></i>All Customers</a></li>
+            <li><a href="#" onclick="showAllCustomers()"><i class='bx bxs-spreadsheet'></i>All Customers</a></li>
             <li  
                 <?php
                     if($_SESSION['admin'] == 1) {
@@ -475,6 +475,109 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
 
         </main>
 
+
+
+
+
+
+
+
+
+
+        <?php
+
+            $CusSql = "SELECT * FROM `customers`";
+            $CusRes = $conn->prepare($CusSql);
+            $CusRes->execute();
+
+        ?>
+
+        <!-- all customers -->
+        <main id="AllCustomers" >
+        
+        <div class="container">
+        <input type="text" id="searchInput1" onkeyup="searchTable()" placeholder="Search by name..." class="search-box">
+        <button id="downloadExcel1">Download Excel</button>
+        
+        <table id="dataTable1">
+            <thead>
+                <tr>
+                    <th>Company</th>
+                    <th>Contact Person</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Main Group</th>
+                    <th>Sub Group</th>
+                    <th>Date</th>
+                    <th>By</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Example table data -->
+                 <?php while($CusRow = $CusRes->fetch(PDO::FETCH_ASSOC)){ ?>
+                <tr>
+                    <td><?php echo $CusRow['company'];?></td>
+                    <td><?php echo $CusRow['contactp'];?></td>
+                    <td><?php echo $CusRow['email'];?></td>
+                    <td><?php echo $CusRow['phone'];?></td>
+                    <td><?php echo $CusRow['mainGroup'];?></td>
+                    <td><?php echo $CusRow['subGroup'];?></td>
+                    <td><?php echo $CusRow['createdDate'];?></td>
+                    <td><?php echo $CusRow['createdBy'];?></td>
+                </tr>
+               <?php } ?>
+                <!-- Add more rows as needed -->
+            </tbody>
+        </table>
+    </div>
+    <script src="./table2excel.js"></script>
+<script>
+    function searchTable() {
+        let input = document.getElementById("searchInput1");
+        let filter = input.value.toLowerCase();
+        let table = document.getElementById("dataTable1");
+        let tr = table.getElementsByTagName("tr");
+
+        for (let i = 1; i < tr.length; i++) {
+            let tds = tr[i].getElementsByTagName("td");
+            let match = false;
+            for (let j = 0; j < tds.length; j++) {
+                if (tds[j]) {
+                    let txtValue = tds[j].textContent || tds[j].innerText;
+                    if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                        match = true;
+                        break;
+                    }
+                }
+            }
+            tr[i].style.display = match ? "" : "none";
+        }
+    }
+
+    document.getElementById("downloadExcel1").addEventListener("click", function() {
+        var table2excel = new Table2Excel();
+        table2excel.export(document.querySelectorAll("#dataTable1"));
+    } )
+
+
+</script>
+
+        </main>
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
     </div>
 
     <script>
@@ -483,18 +586,28 @@ $Mycustotal3 = $myCustotalsmtp3->rowCount();
             document.getElementById("Dashboard").style.display = "block";
             document.getElementById("AddCustomer").style.display = "none";
             document.getElementById("myCustomers").style.display = "none";
+            document.getElementById("AllCustomers").style.display = "none";
         }
 
         const shoAddCus = () => {
             document.getElementById("Dashboard").style.display = "none";
             document.getElementById("AddCustomer").style.display = "block";
             document.getElementById("myCustomers").style.display = "none";
+            document.getElementById("AllCustomers").style.display = "none";
         }
 
         const showMyCustomers = () => {
             document.getElementById("Dashboard").style.display = "none";
             document.getElementById("AddCustomer").style.display = "none";
             document.getElementById("myCustomers").style.display = "block";
+            document.getElementById("AllCustomers").style.display = "none";
+        }
+
+        const showAllCustomers = () => {
+            document.getElementById("Dashboard").style.display = "none";
+            document.getElementById("AddCustomer").style.display = "none";
+            document.getElementById("myCustomers").style.display = "none";
+            document.getElementById("AllCustomers").style.display = "block";
         }
 
 

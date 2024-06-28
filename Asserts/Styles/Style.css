@@ -630,6 +630,10 @@ body{
     display: none;
 }
 
+#AllCustomers{
+    display: none;
+}
+
 .container{
     background: #fff;
     
@@ -818,13 +822,23 @@ tbody tr {
 #downloadExcel{
     padding: 10px;
     margin-bottom: 10px;
-    background-color: #00c60a;
+    background-color: #004cff;
     color: #fff;
     border: none;
     border-radius: 30px;
     cursor: pointer;
 }
 
+
+#downloadExcel1{
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #00c60a;
+    color: #fff;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
 
 
 
